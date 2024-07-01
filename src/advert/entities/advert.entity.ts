@@ -1,27 +1,31 @@
-import { TimestampEntity } from "src/generic/timestamp.entity";
-import { UserEntity } from "src/user/entities/user.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { CategoryEntity } from 'src/category/entities/category.entity';
+import { TimestampEntity } from 'src/generic/timestamp.entity';
+import { UserEntity } from 'src/user/entities/user.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity("advert")
+@Entity('advert')
 export class AdvertEntity extends TimestampEntity {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    title: string;
+  @Column()
+  title: string;
 
-    @Column()
-    description: string;
+  @Column()
+  description: string;
 
-    @Column()
-    price: number;
+  @Column()
+  price: number;
 
-    @Column()
-    nb_rooms: number;
+  @Column()
+  nb_rooms: number;
 
-    @Column({ nullable: true })
-    surface: number;
+  @Column({ nullable: true })
+  surface: number;
 
-    @ManyToOne(() => UserEntity, user => user.adverts)
-    user: UserEntity;
+  @ManyToOne(() => UserEntity, (user) => user.adverts)
+  user: UserEntity;
+
+  @ManyToOne(() => CategoryEntity, (category) => category.adverts)
+  category: CategoryEntity;
 }

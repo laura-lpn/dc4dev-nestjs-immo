@@ -5,10 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AdvertEntity } from './entities/advert.entity';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([AdvertEntity]),
-  ],
+  imports: [TypeOrmModule.forFeature([AdvertEntity])],
   controllers: [AdvertController],
-  providers: [AdvertService]
+  providers: [AdvertService],
 })
 export class AdvertModule {}
