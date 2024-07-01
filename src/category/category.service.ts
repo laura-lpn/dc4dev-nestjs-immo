@@ -51,8 +51,6 @@ export class CategoryService {
   }
 
   checkIfUserIsOwner(category, user) {
-    console.log('category: ', category);
-    console.log('user: ', user);
     if (category.user.id !== user.id)
       throw new UnauthorizedException('You are not the owner of this category');
   }
