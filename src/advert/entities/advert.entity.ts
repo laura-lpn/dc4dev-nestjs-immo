@@ -26,6 +26,6 @@ export class AdvertEntity extends TimestampEntity {
   @ManyToOne(() => UserEntity, (user) => user.adverts)
   user: UserEntity;
 
-  @ManyToOne(() => CategoryEntity, (category) => category.adverts)
+  @ManyToOne(() => CategoryEntity, (category) => category.posts)
   category: CategoryEntity;
 }

@@ -20,7 +20,7 @@ export class UserService {
     try {
       return this.userRepository.save(createUserDto);
     } catch (error) {
-      throw new ConflictException("Error creating user");
+      throw new ConflictException('Error creating user');
     }
   }
 
@@ -29,7 +29,7 @@ export class UserService {
   }
 
   findOne(id: number) {
-    const user = this.userRepository.findOneBy({id});
+    const user = this.userRepository.findOneBy({ id });
     return user;
   }
 
