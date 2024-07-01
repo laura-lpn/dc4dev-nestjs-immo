@@ -1,6 +1,6 @@
 export class CreateAdvertDto {
-    title: string;
-    description: string;
-    price: number;
-    nb_rooms: number;
+  title: string;
+  description: string;
+  price: number;
+  nb_rooms: number;
 }

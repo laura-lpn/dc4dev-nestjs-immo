@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { AdvertService } from './advert.service';
 import { CreateAdvertDto } from './dto/create-advert.dto';
 import { UpdateAdvertDto } from './dto/update-advert.dto';
@@ -12,17 +22,12 @@ export class AdvertController {
 
   @Post()
   @UseGuards(JwtAuthGuard)
-  create(
-    @Body() createAdvertDto: CreateAdvertDto,
-    @User() user
-  ) {
+  create(@Body() createAdvertDto: CreateAdvertDto, @User() user) {
     return this.advertService.create(createAdvertDto, user);
   }
 
   @Get()
-  findAll(
-    @Query() queries: QueriesAdvertDTO
-  ) {
+  findAll(@Query() queries: QueriesAdvertDTO) {
     return this.advertService.findAll(queries);
   }
 
@@ -34,19 +39,16 @@ export class AdvertController {
   @Patch(':id')
   @UseGuards(JwtAuthGuard)
   update(
-    @Param('id') id: string, 
+    @Param('id') id: string,
     @Body() updateAdvertDto: UpdateAdvertDto,
-    @User() user
+    @User() user,
   ) {
     return this.advertService.update(+id, updateAdvertDto, user);
   }
 
   @Delete(':id')
   @UseGuards(JwtAuthGuard)
-  remove(
-    @Param('id') id: string,
-    @User() user
-  ) {
+  remove(@Param('id') id: string, @User() user) {
     return this.advertService.remove(+id, user);
   }
 }
