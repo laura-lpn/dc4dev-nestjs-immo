@@ -16,13 +16,8 @@ export class AdvertService {
   create(createAdvertDto: CreateAdvertDto, user) {
     console.log('create advert => user: ', user);
 
-    const { category_id, ...otherUpdates } = createAdvertDto;
-
     const advert = {
-      ...otherUpdates,
-      category: {
-        id: category_id,
-      },
+      ...createAdvertDto,
       user: {
         id: user.id,
       },
@@ -78,8 +73,9 @@ export class AdvertService {
       });
     }
 
-    queryBuilder.leftJoinAndSelect('advert.user', 'user');
-    queryBuilder.leftJoinAndSelect('advert.category', 'category');
+    queryBuilder
+      .leftJoinAndSelect('advert.user', 'user')
+      .leftJoinAndSelect('advert.category', 'category');
 
     queryBuilder.limit(limit).offset();
 
@@ -108,13 +104,8 @@ export class AdvertService {
 
     this.checkIfUserIsOwner(advert, user);
 
-    const { category_id, ...otherUpdates } = updateAdvertDto;
-
     const advertUpdated = {
-      ...otherUpdates,
-      category: {
-        id: category_id,
-      },
+      ...updateAdvertDto,
     };
 
     return this.advertRepository.update(id, advertUpdated);

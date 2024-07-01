@@ -28,7 +28,9 @@ export class CategoryService {
 
   findAll() {
     const queryBuilder = this.categoryRepository.createQueryBuilder('Category');
-    queryBuilder.leftJoinAndSelect('Category.user', 'user');
+    queryBuilder
+      .leftJoinAndSelect('Category.user', 'user')
+      .leftJoinAndSelect('Category.posts', 'posts');
 
     return queryBuilder.getMany();
   }
@@ -37,6 +39,7 @@ export class CategoryService {
     const queryBuilder = this.categoryRepository
       .createQueryBuilder('Category')
       .leftJoinAndSelect('Category.user', 'user')
+      .leftJoinAndSelect('Category.posts', 'posts')
       .where('Category.id = :id', { id: id });
 
     return queryBuilder.getOne();
@@ -44,7 +47,7 @@ export class CategoryService {
 
   async update(id: number, updateCategoryDto: UpdateCategoryDto, user) {
     const category = await this.findOne(id);
-
+    console.log('updateCategoryDto: ', updateCategoryDto);
     this.checkIfUserIsOwner(category, user);
 
     return this.categoryRepository.update(id, updateCategoryDto);
