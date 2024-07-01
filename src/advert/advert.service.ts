@@ -97,9 +97,9 @@ export class AdvertService {
   }
 
   async update(id: number, updateAdvertDto: UpdateAdvertDto, user) {
-    const adver = await this.findOne(id);
+    const advert = await this.findOne(id);
 
-    this.checkIfUserIsOwner(adver, user);
+    this.checkIfUserIsOwner(advert, user);
 
     return this.advertRepository.update(id, updateAdvertDto);
   }
@@ -110,9 +110,9 @@ export class AdvertService {
   }
 
   async remove(id: number, user) {
-    const adver = await this.findOne(id);
+    const advert = await this.findOne(id);
 
-    this.checkIfUserIsOwner(adver, user);
+    this.checkIfUserIsOwner(advert, user);
 
     return this.advertRepository.softDelete(id);
   }

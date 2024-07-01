@@ -1,6 +1,13 @@
 import { AdvertEntity } from 'src/advert/entities/advert.entity';
 import { TimestampEntity } from 'src/generic/timestamp.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { UserEntity } from 'src/user/entities/user.entity';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity('category')
 export class CategoryEntity extends TimestampEntity {
@@ -12,4 +19,7 @@ export class CategoryEntity extends TimestampEntity {
 
   @OneToMany(() => AdvertEntity, (advert) => advert.category)
   posts: AdvertEntity[];
+
+  @ManyToOne(() => UserEntity, (user) => user.category)
+  user: UserEntity;
 }
